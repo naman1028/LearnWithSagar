@@ -7,24 +7,31 @@
     run ping google.com
     Build the image and tag it as pinger.
     Run the image (create a container) named my-ping.
+Answer - 
 
 2. Tag the image, which is currently tagged as pinger , also as local-registry:5000/pinger .
 
 3. Create a namespace called 'mynamespace' and a pod with image nginx in mynamespace
-
+#kubectl create ns mynamespace
+#kubectl run nginx --image=nginx -n mynamespace
 4. Create a busybox pod (using YAML) that runs the command "env".
-
+# kubectl run busybox --image=busybox  -it --restart=Never -- /bin/sh -c 'env'
 5. Get the YAML for a new namespace called 'myns' without creating it
-
+#kubectl create ns myns --dry-run=client  -o yaml > myns.yaml
 6. Get pods on all namespaces
+#  k get pods -A
 
 7. Get information about the pod, including details about potential issues (e.g. pod hasn't started)
+# k log podname
+#k describe pod podname
 
 8. Create a busybox pod that echoes 'hello world' and then exits
-
+# k run busybox2 --image=busybox  --rm -it --restart=Never -- echo 'hello world'
 9. Delete the pod you just created without any delay (force delete)
+#k delete pod podname --grace-period=0 --force
 
 10. Create the nginx pod with version 1.17.4 and expose it on port 80
+#k run nginx 
     
 11. Change the Image version to 1.15-alpine for the pod you just created and verify the image version is updated
 
